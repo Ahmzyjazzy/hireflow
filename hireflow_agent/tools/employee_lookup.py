@@ -1,28 +1,6 @@
-from datetime import datetime, timedelta
-
 from google.adk.tools.tool_context import ToolContext
 
-# Simulated new hire database  — indexed by email
-# (in production, this would be an actual database or API)
-# Calculate the required start date: one day before today (2025-11-18)
-today = datetime.now().date()
-yesterday = today - timedelta(days=1)
-calculated_start_date = yesterday.strftime("%Y-%m-%d")
-
-new_staff_database = {
-    "john.doe@xyz.com": {
-        "name": "John Doe",
-        "department": "Engineering",
-        "start_date": calculated_start_date,
-        "employee_id": "EMP1021",
-    },
-    "sarah.daniels@xyz.com": {
-        "name": "Sarah Daniels",
-        "department": "Finance",
-        "start_date": calculated_start_date,
-        "employee_id": "EMP3092",
-    }
-}
+from ..data import NEW_STAFF_DATABASE
 
 def employee_lookup(tool_context: ToolContext, email: str) -> dict:
     """
@@ -56,7 +34,7 @@ def employee_lookup(tool_context: ToolContext, email: str) -> dict:
         }
 
     # 2. Lookup staff by email only
-    staff_info = new_staff_database.get(email.lower())
+    staff_info = NEW_STAFF_DATABASE.get(email.lower())
 
     if staff_info is None:
         return {
