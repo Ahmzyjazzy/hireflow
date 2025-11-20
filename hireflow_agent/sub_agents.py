@@ -39,3 +39,14 @@ engineering_agent = LlmAgent(
     instruction="Your primary task is to confirm and update the status of Engineering checklist items.",
     tools=[update_checklist_status]
 )
+
+finance_agent = LlmAgent(
+    name="finance_agent",
+    model=Gemini(
+        model_name=config.model_name,
+        retry_options=config.retry_config
+    ),
+    description="Guides staff onboarding and confirms finance taks completion",
+    instruction="Your primary task is to confirm and update the status of Finance checklist items.",
+    tools=[update_checklist_status]
+)

@@ -6,7 +6,7 @@ from config import config
 from .prompt import ROOT_AGENT_INSTRUCTION
 from .tools.employee_lookup import employee_lookup
 from .tools.get_onboarding_checklist import get_onboarding_checklist
-from .sub_agents import hr_agent, it_agent, engineering_agent
+from .sub_agents import hr_agent, it_agent, engineering_agent, finance_agent
 
 root_agent = LlmAgent(
     name="hireflow_agent",
@@ -22,5 +22,6 @@ root_agent = LlmAgent(
         AgentTool(agent=it_agent),
         AgentTool(agent=hr_agent),
         AgentTool(agent=engineering_agent),
+        AgentTool(agent=finance_agent),
     ]
 )
