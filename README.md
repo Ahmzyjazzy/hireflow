@@ -16,7 +16,7 @@ By orchestrating specialized sub-agents and integrating with external data sourc
 ## Architecture
 HireFlow uses a **Multi-Agent LLM Orchestrator** pattern. The main `HireFlow Agent` acts as the orchestrator, delegating specific tasks to specialized sub-agents based on the user's intent. It also connects to an **MCP Server** to securely access employee data and generate dynamic onboarding checklists.
 
-![HireFlow Architecture](/screenshots/architecture.png)
+![HireFlow Architecture](/docs/screenshots/architecture.png)
 
 ### Core Components
 1.  **HireFlow Agent (Orchestrator)**: The entry point for the user. It understands the user's request and routes it to the appropriate sub-agent or tool.
