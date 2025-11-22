@@ -101,3 +101,11 @@ This project uses the [Gemini API](https://ai.google.dev/gemini-api/), which req
     make playground
     ```
 3.  Open the provided URL in your browser to interact with HireFlow.
+
+## Test Data
+Use the following sample emails to authenticate as different users:
+
+| Name | Email | Department |
+| :--- | :--- | :--- |
+| **John Doe** | `john.doe@xyz.com` | Engineering |
+| **Sarah Daniels** | `sarah.daniels@xyz.com` | Finance |
