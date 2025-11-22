@@ -22,7 +22,7 @@ load_dotenv()
 mcp_toolset = MCPToolset(
     connection_params=StdioConnectionParams( # Use StdioConnectionParams for local process communication
         server_params = StdioServerParameters(
-            command='python3', # Command to run your MCP server script
+            command='python3', # Command to run MCP server script
             args=["-m", "hireflow_agent.mcp_server.server"], # Argument is the path to the script
         ),
     ),
