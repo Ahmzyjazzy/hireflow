@@ -2,7 +2,10 @@ from google.adk.agents import LlmAgent
 from google.adk.models.google_llm import Gemini
 
 from config import config
-from .tools.shared_onboarding_tools import update_checklist_status, verify_asset_assignment
+from hireflow_agent.tools import (
+    update_checklist_status, 
+    verify_asset_assignment
+)
 
 hr_agent = LlmAgent(
     name="hr_agent",
@@ -49,4 +52,15 @@ finance_agent = LlmAgent(
     description="Guides staff onboarding and confirms finance taks completion",
     instruction="Your primary task is to confirm and update the status of Finance checklist items.",
     tools=[update_checklist_status]
+)
+
+assessment_agent = LlmAgent(
+    name="assessment_agent",
+    model=Gemini(
+        model_name=config.model_name,
+        retry_options=config.retry_config
+    ),
+    description="Manages general assessments (security training, HR quizzes). Use this agent to confirm assessment completion.",
+    instruction="Your primary task is to confirm and update the status of General_Assessment checklist items using the update_checklist_status tool.",
+    tools=[update_checklist_status] 
 )

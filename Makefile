@@ -10,5 +10,8 @@ install:
 dev:
 	uv run adk api_server . --allow_origins="*"
 
+mcp:
+	uv run python3 -m hireflow_agent.mcp_server.server
+
 playground:
 	uv run adk web --port 8501

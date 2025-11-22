@@ -8,7 +8,7 @@ yesterday = today - timedelta(days=1)
 CALCULATED_START_DATE = yesterday.strftime("%Y-%m-%d")
 
 # --- Mock Employee Database ---
-# (in production, this would be an API call)
+# (in production, this would be an API call/DB query)
 NEW_STAFF_DATABASE: Dict[str, Dict[str, str]] = {
     "john.doe@xyz.com": {
         "name": "John Doe",
@@ -26,10 +26,11 @@ NEW_STAFF_DATABASE: Dict[str, Dict[str, str]] = {
 
 # --- Mock Onboarding Checklists ---
 # Ordered checklists per department
+# (in production, this would be an API call/DB query for pre-configured company wide checklist)
 CHECKLISTS: Dict[str, List[str]] = {
    "it": [
-        "Create official email",
-        "Assign laptop to staff",
+        "Confirm official email created",
+        "Confirm worktools received",
     ],
     "hr": [
         "Complete personal information form",

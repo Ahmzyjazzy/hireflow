@@ -8,6 +8,8 @@ class Config:
         MODEL_NAME (str): The name of the language model to be used.
     
     """
+
+    app_name: str = "hireflow_app"
     
     model_name: str = "gemini-2.0-flash-001"
 
