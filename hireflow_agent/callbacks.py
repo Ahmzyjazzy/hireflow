@@ -16,17 +16,22 @@ def update_session_after_tool_callback(
 
     # MCP tools return content as a list of blocks, usually JSON in the text block
     try:
-        content = tool_response.get("content", [])
-        if content and isinstance(content, list) and "text" in content[0]:
-            response_text = content[0]["text"]
-            parsed_response = json.loads(response_text)
-            
-            result = parsed_response.get("result", "")
-            status = parsed_response.get("status", "")
+        if isinstance(tool_response, dict):
+            content = tool_response.get("content", [])
+            if content and isinstance(content, list) and "text" in content[0]:
+                response_text = content[0]["text"]
+                parsed_response = json.loads(response_text)
+                
+                result = parsed_response.get("result", "")
+                status = parsed_response.get("status", "")
+            else:
+                # Fallback for non-MCP tools or different structure
+                result = tool_response.get("result", "")
+                status = tool_response.get("status", "")
         else:
-            # Fallback for non-MCP tools or different structure
-            result = tool_response.get("result", "")
-            status = tool_response.get("status", "")
+            # Handle cases where tool_response might be a string
+            result = str(tool_response)
+            status = "error" if "error" in result.lower() else "unknown"
             
     except json.JSONDecodeError:
         print("[Callback] Failed to parse tool response as JSON")
@@ -41,13 +46,17 @@ def update_session_after_tool_callback(
     print(f"[Callback] Status: {status}")
 
     if tool_name == 'employee_lookup' and status == "success":
-        tool_context.state["user:profile"] = result
+        # Only set if not already present
+        if "user:profile" not in tool_context.state:
+            tool_context.state["user:profile"] = result
         # We don't necessarily need to return tool_response if we just want to update state
         # But returning it keeps the flow going
         return tool_response
 
     if tool_name == 'get_onboarding_checklist' and status == "success":
-        tool_context.state["user:checklist"] = result
+        # Only set if not already present
+        if "user:checklist" not in tool_context.state:
+            tool_context.state["user:checklist"] = result
         return tool_response
 
     print("[Callback] Passing original tool response through.")

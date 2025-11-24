@@ -26,31 +26,27 @@ NEW_STAFF_DATABASE: Dict[str, Dict[str, str]] = {
 
 # --- Mock Onboarding Checklists ---
 # Ordered checklists per department
-# (in production, this would be an API call/DB query for pre-configured company wide checklist)
+# (in production, this would be an API call/DB query for pre-configured company wide onboarding checklist)
 CHECKLISTS: Dict[str, List[str]] = {
-   "it": [
-        "Confirm official email created",
-        "Confirm worktools received",
-    ],
     "hr": [
-        "Complete personal information form",
-        "Sign employee handbook",
-        "Complete benefits enrollment",
+        "Complete employee profile form",
+        "Read the employee handbook",
+        "Sign employee handbook form",
         "Attend HR orientation",
     ],
+   "it": [
+        "Confirm worktools received",
+        "Confirm profile on staff portal",
+    ],
     "assessment": [
-        "Take HR assessment quiz",
         "Complete security training",
+        "Take Assessment Quiz",
     ],
     "engineering": [
         "Setup dev workstation",
-        "Request repo access",
-        "Setup and run project locally",
         "Meet with tech lead",
     ],
     "finance": [
-        "Complete finance onboarding form",
-        "Setup expense account",
         "Attend finance orientation",
         "Meet with finance manager",
     ],

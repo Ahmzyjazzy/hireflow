@@ -71,7 +71,7 @@ def get_onboarding_checklist(department: str) -> dict:
     }
     
     # Assessment tasks are general but grouped separately for tracking
-    full_checklist["General_Assessment"] = {task: False for task in CHECKLISTS["assessment"]}
+    full_checklist["Assessment"] = {task: False for task in CHECKLISTS["assessment"]}
 
     # Add department-specific tasks
     if user_dept in CHECKLISTS:

@@ -1,3 +1,4 @@
+import os
 from dotenv import load_dotenv
 from google.adk.agents import LlmAgent
 from google.adk.models.google_llm import Gemini
@@ -19,8 +20,11 @@ from hireflow_agent.callbacks import update_session_after_tool_callback
 
 load_dotenv()
 
-mcp_toolset = MCPToolset(
-    connection_params=StdioConnectionParams( # Use StdioConnectionParams for local process communication
+if not os.environ.get("GOOGLE_API_KEY"):
+    raise ValueError("GOOGLE_API_KEY is not set. Please check your .env file.")
+
+hireflow_mcp_toolset = MCPToolset(
+    connection_params=StdioConnectionParams(
         server_params = StdioServerParameters(
             command='python3', # Command to run MCP server script
             args=["-m", "hireflow_agent.mcp_server.server"], # Argument is the path to the script
@@ -28,6 +32,34 @@ mcp_toolset = MCPToolset(
     ),
     tool_filter=['employee_lookup', 'get_onboarding_checklist'] # Optional: ensure only specific tools are loaded
 )
+
+# Define base tools
+agent_tools = [
+    hireflow_mcp_toolset, #employee_lookup, get_onboarding_checklist
+    AgentTool(agent=hr_agent),
+    AgentTool(agent=it_agent),
+    AgentTool(agent=engineering_agent),
+    AgentTool(agent=finance_agent),
+    AgentTool(agent=assessment_agent),
+]
+
+# Conditionally add Notion MCP if API key is present
+if os.environ.get("NOTION_API_KEY"):
+    notion_mcp_toolset = MCPToolset(
+        connection_params=StdioConnectionParams(
+            server_params=StdioServerParameters(
+                command="npx",
+                args=["-y", "@notionhq/notion-mcp-server"],
+                env={
+                    "NOTION_TOKEN": os.environ.get("NOTION_API_KEY"),
+                    **os.environ # Optional: Inherit system environment variables so npx can find 'node' and other tools
+                }
+            ),
+            timeout=120 # Optional: Increase timeout for npx installation
+        ),
+        tool_filter=['API-post-search', 'API-retrieve-a-page']
+    )
+    agent_tools.append(notion_mcp_toolset)
 
 root_agent = LlmAgent(
     name="hireflow_agent",
@@ -37,13 +69,6 @@ root_agent = LlmAgent(
         model_name=config.model_name,
         retry_options=config.retry_config
     ),
-    tools=[
-        mcp_toolset, #employee_lookup, get_onboarding_checklist
-        AgentTool(agent=it_agent),
-        AgentTool(agent=hr_agent),
-        AgentTool(agent=engineering_agent),
-        AgentTool(agent=finance_agent),
-        AgentTool(agent=assessment_agent),
-    ],
+    tools=agent_tools,
     after_tool_callback=update_session_after_tool_callback
 )
