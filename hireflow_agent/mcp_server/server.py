@@ -93,4 +93,11 @@ def get_onboarding_checklist(department: str) -> dict:
         }
 
 if __name__ == "__main__":
-    mcp.run(transport="stdio")
+    try:
+        mcp.run(transport="stdio")
+    except KeyboardInterrupt:
+        print("\nMCP server (studio) stopped by user")
+    except Exception as e:
+        print(f"\nMCP server (studio) encountered an error: {e}")
+    finally:
+        print("\nMCP server (studio) process exiting.")

@@ -10,8 +10,9 @@ class Config:
     """
 
     app_name: str = "hireflow_app"
-    
     model_name: str = "gemini-2.0-flash-001"
+    compaction_interval: int = 3
+    compaction_overlap_size: int = 1
 
     retry_config = types.HttpRetryOptions(
         attempts=5,  # Maximum retry attempts

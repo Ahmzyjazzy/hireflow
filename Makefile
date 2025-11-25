@@ -15,3 +15,6 @@ mcp:
 
 playground:
 	uv run adk web --port 8501
+
+run:
+	uv run python3 -m main
