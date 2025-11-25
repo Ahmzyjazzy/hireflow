@@ -115,15 +115,18 @@ To enable the agent to access your Notion workspace (for employee handbook, comp
 3.  Set up environment variables in `.env`. as described under the Configure your Gemini API Key section.
 
 ### Running the Agent
-1.  Start the MCP server in a separate terminal
-    ```bash
-    make mcp
-    ```
-2.  Start the Agent playground (i.e adk web UI):
+1.  Run as a web app (e.g Start the adk web UI playground)
     ```bash
     make playground
     ```
-3.  Open the provided URL in your browser to interact with HireFlow.
+    Open the provided URL in your browser to interact with HireFlow.
+
+2. Run via notebook, open the [hireflow_demo notebook](docs/notebooks/hireflow_demo.ipynb) and run the cells
+
+3.  Run as a console app
+    ```bash
+    make run
+    ```
 
 ## Test Data
 Use the following sample emails to authenticate as different users:
