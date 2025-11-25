@@ -56,7 +56,7 @@ These tools are used by the agents to modify the session state and track progres
 
 ## Workflow
 1.  **Authentication**: The user provides their email. The **HireFlow Agent** calls the `employee_lookup` MCP tool to verify identity and load the user's profile. 
-> Note: For realife scenario, this agent would be access with staff portal ensuring user is already authenticated
+> Note: For realife scenario, this agent will be access within staff portal ensuring user is already authenticated
 2.  **Initialization**: Based on the user's department, the agent calls `get_onboarding_checklist` (MCP) to generate a personalized onboarding checklist.
 3.  **Orchestration**: The user interacts with the agent (e.g., "I've signed my handbook").
 4.  **Delegation**: The **HireFlow Agent** routes the request to the relevant sub-agent (e.g., **HR Agent**).
