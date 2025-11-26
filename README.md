@@ -26,6 +26,8 @@ HireFlow uses a **Multi-Agent LLM Orchestrator** pattern. The main `HireFlow Age
     *   `API-post-search(query:, sort, filter, start_cursor, page_size)`: it is use to search Notion pages/documents by title (if notion is configured)
     *   `API-retrieve-a-page( page_id: str)`: it is use to retrieve a specific page/document by page_id (if notion is configured)
 3.  **Sub-Agents**: Specialized agents focused on specific domains (HR, IT, Engineering, etc.).
+4.  **DatabaseSessionService**: For persistent of chat session
+5.  **Context engineering**: I use context compaction for context management.
 
 ## Agents
 
@@ -135,3 +137,7 @@ Use the following sample emails to authenticate as different users:
 | :--- | :--- | :--- |
 | **John Doe** | `john.doe@xyz.com` | Engineering |
 | **Sarah Daniels** | `sarah.daniels@xyz.com` | Finance |
+
+![HireFlow Demo](/docs/images/demo/3-adk-state.png)
+
+Thank you
