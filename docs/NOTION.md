@@ -15,7 +15,7 @@ This guide explains how to configure the Notion Model Context Protocol (MCP) ser
 1.  Go to [https://www.notion.so/profile/integrations](https://www.notion.so/profile/integrations ).
 2.  Click the **"New integration"** button.
 
-![New Integration](docs/images/notion/step1_new_integration.png)
+![New Integration](../docs/images/notion/step1_new_integration.png)
 
 ### 2. Configure Integration Details
 
@@ -25,12 +25,12 @@ This guide explains how to configure the Notion Model Context Protocol (MCP) ser
 4.  Review your settings.
 5.  Click **Save**.
 
-![Integration Details](docs/images/notion/step2_integration_details.png)
+![Integration Details](../docs/images/notion/step2_integration_details.png)
 
 ### 3. Integrations setting
 After saving, you'll see a success message. Click **Configure integration settings**.
 
-![Configure Settings](docs/images/notion/step3_save_integration.png)
+![Configure Settings](../docs/images/notion/step3_save_integration.png)
 
 ### 4. Configure Capabilities
 
@@ -42,7 +42,7 @@ After saving, you'll see a success message. Click **Configure integration settin
 
 2.  You can copy the generated **Internal Integration Secret** as your `NOTION_API_KEY`
 
-![Configure Settings](docs/images/notion/step4_configure_settings.png)
+![Configure Settings](../docs/images/notion/step4_configure_settings.png)
 
 
 
@@ -52,11 +52,11 @@ After saving, you'll see a success message. Click **Configure integration settin
 2.  Click **Show** and then **Copy** this key.
 3.  **Save this key securely.** You will need it for the next step.
 
-![Edit Access](docs/images/notion/step5_edit_access.png)
+![Edit Access](../docs/images/notion/step5_edit_access.png)
 
 3.  **Specify Page.** Specify the previously created Notion team workspace and pages.
 
-![Set Edit Access](docs/images/notion/step6_select_page_access.png)
+![Set Edit Access](../docs/images/notion/step6_select_page_access.png)
 
 ### 6. Configure HireFlow
 
@@ -79,7 +79,7 @@ NOTION_API_KEY=secret_your_copied_secret_key_here
 
 > Repeat this for any other pages or databases the agent needs to access.
 
-![Set Edit Access](docs/images/notion/step7_confirm_mcp_connected_to_page.png)
+![Set Edit Access](../docs/images/notion/step7_confirm_mcp_connected_to_page.png)
 
 ## Verification
 
